@@ -25,6 +25,10 @@ namespace GameShopWeb.Controllers
         [HttpPost]
         public IActionResult Create(Platform obj)
         {
+            if(obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
+            }
             if (ModelState.IsValid)
             {
                 //新規Platform作成
