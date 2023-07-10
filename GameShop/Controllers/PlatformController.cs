@@ -22,5 +22,15 @@ namespace GameShopWeb.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Create(Platform obj)
+        {
+            //新規Platform作成
+            _db.Platforms.Add(obj);
+            //保存
+            _db.SaveChanges();
+            //indexに戻す
+            return RedirectToAction("Index");
+        }
     }
 }
