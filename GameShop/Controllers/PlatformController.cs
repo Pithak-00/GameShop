@@ -35,6 +35,7 @@ namespace GameShopWeb.Controllers
                 _db.Platforms.Add(obj);
                 //保存
                 _db.SaveChanges();
+				TempData["success"] = "Platform created successfully";
 				//indexに戻す
 				return RedirectToAction("Index");
 			}
@@ -62,6 +63,7 @@ namespace GameShopWeb.Controllers
 				_db.Platforms.Update(obj);
 				//保存
 				_db.SaveChanges();
+				TempData["success"] = "Platform updated successfully";
 				//indexに戻す
 				return RedirectToAction("Index");
 			}
@@ -92,6 +94,7 @@ namespace GameShopWeb.Controllers
 			_db.Platforms.Remove(obj);
 			//保存
 			_db.SaveChanges();
+			TempData["success"] = "Platform deleted successfully";
 			//indexに戻す
 			return RedirectToAction("Index");
 		}
