@@ -40,5 +40,36 @@ namespace GameShopWeb.Controllers
 			}
            return View();
         }
-    }
+		public IActionResult Edit(int? id)
+		{
+            if(id==null || id == 0)
+            {
+                return NotFound();
+            }
+            Platform? platformFromDb = _db.Platforms.Find(id);
+            if(platformFromDb==null)
+            {
+                return NotFound();
+            }
+			return View(platformFromDb);
+		}
+		[HttpPost]
+		public IActionResult Edit(Platform obj)
+		{
+			if (obj.Name == obj.DisplayOrder.ToString())
+			{
+				ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
+			}
+			if (ModelState.IsValid)
+			{
+				//新規Platform作成
+				_db.Platforms.Add(obj);
+				//保存
+				_db.SaveChanges();
+				//indexに戻す
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
+	}
 }
