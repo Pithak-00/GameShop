@@ -67,5 +67,33 @@ namespace GameShopWeb.Controllers
 			}
 			return View();
 		}
+		public IActionResult Delete(int? id)
+		{
+			if (id == null || id == 0)
+			{
+				return NotFound();
+			}
+			Platform? platformFromDb = _db.Platforms.Find(id);
+			if (platformFromDb == null)
+			{
+				return NotFound();
+			}
+			return View(platformFromDb);
+		}
+		[HttpPost, ActionName("Delete")]
+		public IActionResult DeletePOST(int? id)
+		{
+			Platform? obj = _db.Platforms.Find(id);
+			if (obj == null)
+			{
+				return NotFound();
+			}
+			//Platform削除
+			_db.Platforms.Remove(obj);
+			//保存
+			_db.SaveChanges();
+			//indexに戻す
+			return RedirectToAction("Index");
+		}
 	}
 }
