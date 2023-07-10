@@ -18,5 +18,9 @@ namespace GameShopWeb.Controllers
 			//Platform情報表示
 			return View(objPlatformList);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
