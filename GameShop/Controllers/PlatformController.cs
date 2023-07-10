@@ -15,7 +15,8 @@ namespace GameShopWeb.Controllers
         {
             //Platform情報取得
             List<Platform> objPlatformList = _db.Platforms.ToList();
-            return View();
+			//Platform情報表示
+			return View(objPlatformList);
         }
     }
 }
