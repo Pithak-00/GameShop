@@ -1,6 +1,7 @@
 ﻿using GameShop.DataAccess.Repository.IRepository;
 using GameShop.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameShopWeb.Areas.Admin.Controllers
 {
@@ -15,6 +16,12 @@ namespace GameShopWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            IEnumerable<SelectListItem> PlatformList = _unitOfWork.Platform
+                .GetAll().Select(u => new SelectListItem
+            {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+            });
             return View(objProductList);
         }
         public IActionResult Create()
