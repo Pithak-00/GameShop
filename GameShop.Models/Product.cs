@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameShop.Models
 {
@@ -33,6 +34,8 @@ namespace GameShop.Models
 		[Range(1, 10000)]
 		public int Price100 { get; set; }
 		public string Description { get; set; }
-
+		public int PlatformId { get; set; }
+		[ForeignKey("PlatformId")]
+		public Platform Platform { get; set; }
 	}
 }
