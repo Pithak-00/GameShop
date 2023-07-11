@@ -1,4 +1,5 @@
 ﻿using GameShop.DataAccess.Data;
+using GameShop.DataAccess.Repository;
 using GameShop.DataAccess.Repository.IRepository;
 using GameShop.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,15 +8,15 @@ namespace GameShopWeb.Controllers
 {
     public class PlatformController : Controller
     {
-        private readonly IPlatformRepository _platformRepository;
-        public PlatformController(IPlatformRepository db)
+        private readonly IUnitOfWork _unitOfWork;
+        public PlatformController(IUnitOfWork unitOfWork)
         {
-			_platformRepository = db;
+			_unitOfWork = unitOfWork;
         }
         public IActionResult Index()
-        {
-            //Platform情報取得
-            List<Platform> objPlatformList = _platformRepository.GetAll().ToList();
+		{
+			//Platform情報取得
+            List<Platform> objPlatformList = _unitOfWork.Platform.GetAll().ToList();
 			//Platform情報表示
 			return View(objPlatformList);
         }
@@ -33,9 +34,9 @@ namespace GameShopWeb.Controllers
             if (ModelState.IsValid)
             {
 				//新規Platform作成
-				_platformRepository.Add(obj);
+				_unitOfWork.Platform.Add(obj);
 				//保存
-				_platformRepository.Save();
+				_unitOfWork.Save();
 				TempData["success"] = "Platform created successfully";
 				//indexに戻す
 				return RedirectToAction("Index");
@@ -48,7 +49,7 @@ namespace GameShopWeb.Controllers
             {
                 return NotFound();
             }
-            Platform? platformFromDb = _platformRepository.Get(u=>u.Id==id);
+            Platform? platformFromDb = _unitOfWork.Platform.Get(u=>u.Id==id);
             if(platformFromDb==null)
             {
                 return NotFound();
@@ -61,9 +62,9 @@ namespace GameShopWeb.Controllers
 			if (ModelState.IsValid)
 			{
 				//Platform更新
-				_platformRepository.Update(obj);
+				_unitOfWork.Platform.Update(obj);
 				//保存
-				_platformRepository.Save();
+				_unitOfWork.Save();
 				TempData["success"] = "Platform updated successfully";
 				//indexに戻す
 				return RedirectToAction("Index");
@@ -76,7 +77,7 @@ namespace GameShopWeb.Controllers
 			{
 				return NotFound();
 			}
-			Platform? platformFromDb = _platformRepository.Get(u => u.Id == id);
+			Platform? platformFromDb = _unitOfWork.Platform.Get(u => u.Id == id);
 			if (platformFromDb == null)
 			{
 				return NotFound();
@@ -86,15 +87,15 @@ namespace GameShopWeb.Controllers
 		[HttpPost, ActionName("Delete")]
 		public IActionResult DeletePOST(int? id)
 		{
-			Platform? obj = _platformRepository.Get(u => u.Id == id);
+			Platform? obj = _unitOfWork.Platform.Get(u => u.Id == id);
 			if (obj == null)
 			{
 				return NotFound();
 			}
 			//Platform削除
-			_platformRepository.Remove(obj);
+			_unitOfWork.Platform.Remove(obj);
 			//保存
-			_platformRepository.Save();
+			_unitOfWork.Save();
 			TempData["success"] = "Platform deleted successfully";
 			//indexに戻す
 			return RedirectToAction("Index");
