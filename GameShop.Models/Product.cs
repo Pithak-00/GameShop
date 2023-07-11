@@ -37,5 +37,6 @@ namespace GameShop.Models
 		public int PlatformId { get; set; }
 		[ForeignKey("PlatformId")]
 		public Platform Platform { get; set; }
+		public string ImageUrl { get; set; }
 	}
 }
