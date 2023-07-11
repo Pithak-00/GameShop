@@ -2,7 +2,7 @@
 
 namespace GameShop.DataAccess.Repository.IRepository
 {
-	internal interface IRepository<T> where T : class
+	public interface IRepository<T> where T : class
 	{
 		//T - Platform
 		IEnumerable<T> GetAll();
