@@ -3,7 +3,7 @@
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h2 class="text-white py-2">Platform List</h2>
+				<h2 class="text-white py-2">Product List</h2>
 			</div>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<table class=" table table-bordered table-striped">
+		<table id="tblData" class=" table table-bordered table-striped" style="width:100%">
 			<thead>
 				<tr>
 					<th>Title</th>
@@ -28,29 +28,25 @@
 					<th>Description</th>
 				</tr>
 			</thead>
-			<tbody>
-				<!-- Platform情報表示 -->
-				@foreach (var obj in Model.OrderBy(u => u.Id))
-				{
-					<tr>
-						<td>@obj.Title</td>
-						<td>@obj.Brand</td>
-						<td>@obj.Platform.Name</td>
-						<td>@obj.ListPrice</td>
-						<td>@obj.Description</td>
-						<td>
-							<div class="w-75 btn-group" role="group">
-								<a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-									<i class="bi bi-pencil-square"></i> Edit
-								</a>
-								<a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-									<i class="bi bi-trash-fill"></i> Delete
-								</a>
-							</div>
-						</td>
-					</tr>
-				}
-			</tbody>
 		</table>
+
 	</div>
 </div>
+
+@section Scripts{
+	<!--TODO: 何故かjsファイル読み込めないか原因調査中-->
+	<script scr="~/js/product.js"></script>
+	<!--TODO: 仮対応-->
+	<script>
+		dataTable = $('#tblData').DataTable({
+			"ajax": { url: '/admin/product/getall' },
+			"columns": [
+				{ data: 'title', "width": "15%" },
+				{ data: 'brand', "width": "10%" },
+				{ data: 'platform.name', "width": "5%" },
+				{ data: 'listPrice', "width": "5%" },
+				{ data: 'description', "width": "40%" }
+			]
+		});
+	</script>
+}
