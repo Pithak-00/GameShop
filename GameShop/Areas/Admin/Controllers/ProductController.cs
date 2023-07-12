@@ -20,7 +20,7 @@ namespace GameShopWeb.Areas.Admin.Controllers
             
             return View(objProductList);
         }
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             ProductVM productVM = new()
             {
@@ -32,10 +32,21 @@ namespace GameShopWeb.Areas.Admin.Controllers
 				}),
                 Product = new Product()
             };
-			return View(productVM);
+
+            if (id == null || id == 0)
+            {
+                // Create
+                return View(productVM);
+            }
+            else
+            {
+                // Update
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
+				return View(productVM);
+			}
         }
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
