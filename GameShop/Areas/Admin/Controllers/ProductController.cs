@@ -16,17 +16,21 @@ namespace GameShopWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
-            IEnumerable<SelectListItem> PlatformList = _unitOfWork.Platform
-                .GetAll().Select(u => new SelectListItem
-            {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-            });
+            
             return View(objProductList);
         }
         public IActionResult Create()
         {
-            return View();
+			IEnumerable<SelectListItem> PlatformList = _unitOfWork.Platform
+				.GetAll().Select(u => new SelectListItem
+				{
+					Text = u.Name,
+					Value = u.Id.ToString()
+				});
+
+            ViewBag.PlatformList = PlatformList;
+
+			return View();
         }
         [HttpPost]
         public IActionResult Create(Product obj)
