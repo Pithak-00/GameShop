@@ -1,5 +1,6 @@
 ﻿using GameShop.DataAccess.Repository.IRepository;
 using GameShop.Models;
+using GameShop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -21,28 +22,39 @@ namespace GameShopWeb.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
-			IEnumerable<SelectListItem> PlatformList = _unitOfWork.Platform
-				.GetAll().Select(u => new SelectListItem
-				{
+            ProductVM productVM = new()
+            {
+				PlatformList = _unitOfWork.Platform
+				.GetAll().Select(u => new SelectListItem 
+                { 
 					Text = u.Name,
 					Value = u.Id.ToString()
-				});
-
-            ViewBag.PlatformList = PlatformList;
-
-			return View();
+				}),
+                Product = new Product()
+            };
+			return View(productVM);
         }
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Create(ProductVM productVM)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                productVM.PlatformList = _unitOfWork.Platform
+               .GetAll().Select(u => new SelectListItem
+               {
+                   Text = u.Name,
+                   Value = u.Id.ToString()
+               });
+				return View(productVM);
+			}
+          
         }
         public IActionResult Edit(int? id)
         {

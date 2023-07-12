@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace GameShop.Models
 {
@@ -36,7 +37,9 @@ namespace GameShop.Models
 		public string Description { get; set; }
 		public int PlatformId { get; set; }
 		[ForeignKey("PlatformId")]
+		[ValidateNever]
 		public Platform Platform { get; set; }
+		[ValidateNever]
 		public string ImageUrl { get; set; }
 	}
 }
