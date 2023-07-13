@@ -3,9 +3,30 @@ html {
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+      font-size: 16px;
+    }
+
+    html, body {
+        height: 90%;
+    }
+
+    .wrapper {
+        min-height: 90%;
+        height: auto !important;
+        height: 90%;
+        margin: 0em auto;
+        // the value of the inverse of the height of the footer
+    }
+
+    .footer, .push {
+        height: 4em;
+        // height of footer
+    }
+
+    form {
+        height: 100%;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
