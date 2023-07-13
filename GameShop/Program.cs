@@ -1,4 +1,5 @@
 using GameShop.DataAccess.Data;
+using GameShop.DataAccess.DBInitializer;
 using GameShop.DataAccess.Repository;
 using GameShop.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -28,9 +29,18 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+//SeedDatabase();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabase()
+{
+    using(var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDBInitializer>();
+        dbInitializer.Initialize();
+    }
+}
