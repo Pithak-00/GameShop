@@ -19,7 +19,7 @@ namespace GameShopWeb.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Platform");
+            IEnumerable<Product>? productList = _unitOfWork.Product.GetAll(includeProperties: "Platform");
             return View(productList);
         }
 
