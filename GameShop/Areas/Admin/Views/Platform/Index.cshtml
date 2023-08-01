@@ -3,7 +3,7 @@
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h2 class="text-white py-2">Platform List</h2>
+				<h2 class="text-white py-2">プラットフォーム一覧</h2>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 			</div>
 			<div class="col-6 text-end">
 				<a asp-controller="Platform" asp-action="Create" class="btn btn-primary">
-					<i class="bi bi-plus-circle"></i> Create New Platform
+					<i class="bi bi-plus-circle"></i>新規プラットフォーム作成
 				</a>
 			</div>
 		</div>
@@ -22,10 +22,10 @@
 			<thead>
 				<tr>
 					<th>
-						Platform Name
+						プラットフォーム名
 					</th>
 					<th>
-						Display Order
+						表示順
 					</th>
 					<th>
 
@@ -42,10 +42,10 @@
 						<td>
 							<div class="w-75 btn-group" role="group">
 								<a asp-controller="Platform" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-									<i class="bi bi-pencil-square"></i> Edit
+									<i class="bi bi-pencil-square"></i>編集
 								</a>
 								<a asp-controller="Platform" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-									<i class="bi bi-trash-fill"></i> Delete
+									<i class="bi bi-trash-fill"></i>削除
 								</a>
 							</div>
 						</td>

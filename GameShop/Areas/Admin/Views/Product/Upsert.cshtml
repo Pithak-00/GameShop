@@ -53,7 +53,7 @@
 						<div class="form-floating py-3 col-12">
 							<label asp-for="Product.PlatformId" class="ms-2"></label>
 							<select asp-for="@Model.Product.PlatformId" asp-items="@Model.PlatformList" class="form-select border-0 shadow">
-								<option disabled selected>--Select Platform--</option>
+								<option disabled selected>--プラットフォーム選択--</option>
 							</select>
 							<span asp-validation-for="Product.PlatformId" class="text-danger"></span>
 						</div>
@@ -66,15 +66,15 @@
 							<div class="col-6 col-md-3">
 								@if (Model.Product.Id != 0)
 								{
-									<button type="submit" class="btn btn-primary form-control">Update</button>
+									<button type="submit" class="btn btn-primary form-control">更新</button>
 								}
 								else
 								{
-									<button type="submit" class="btn btn-primary form-control">Create</button>
+									<button type="submit" class="btn btn-primary form-control">作成</button>
 								}
 							</div>
 							<div class="col-6 col-md-3">
-								<a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary border form-control">Back to List</a>
+								<a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary border form-control">商品一覧に戻る</a>
 							</div>
 						</div>
 					</div>
