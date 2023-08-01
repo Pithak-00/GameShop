@@ -1,9 +1,10 @@
 ﻿using GameShop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameShop.DataAccess.Data
 {
-	public class ApplicationDbContext : DbContext
+	public class ApplicationDbContext : IdentityDbContext
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
@@ -13,6 +14,8 @@ namespace GameShop.DataAccess.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			base.OnModelCreating(modelBuilder);
+
 			modelBuilder.Entity<Platform>().HasData(
 				new Platform { Id = 1, Name = "PS5", DisplayOrder = 1 },
 				new Platform { Id = 2, Name = "PS4", DisplayOrder = 2 },
