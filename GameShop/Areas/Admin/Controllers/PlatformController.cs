@@ -2,11 +2,14 @@
 using GameShop.DataAccess.Repository;
 using GameShop.DataAccess.Repository.IRepository;
 using GameShop.Models;
+using GameShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameShopWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class PlatformController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
