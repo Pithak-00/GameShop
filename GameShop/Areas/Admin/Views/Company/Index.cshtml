@@ -1,0 +1,96 @@
+﻿
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">企業一覧</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row pb-3">
+			<div class="col-6">
+			</div>
+			<div class="col-6 text-end">
+				<a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">
+					<i class="bi bi-plus-circle"></i> 企業の新規作成
+				</a>
+			</div>
+		</div>
+
+		<table id="tblData" class=" table table-bordered table-striped" style="width:100%">
+			<thead>
+				<tr>
+					<th>名前</th>
+					<th>電話番号</th>
+					<th>郵便番号（半角数字）</th>
+					<th>都道府県</th>
+					<th>市区町村</th>
+					<th>丁目・番地・号（数字は半角数字）</th>
+					<th></th>
+				</tr>
+			</thead>
+		</table>
+
+	</div>
+</div>
+
+@section Scripts{
+	<!--TODO: 何故かjsファイル読み込めないか原因調査中-->
+	<script scr="~/js/company.js"></script>
+	<!--TODO: 仮対応-->
+	<script>
+		var dataTable;
+
+		$(document).ready(function () {
+			loadDataTable();
+		});
+		function loadDataTable() {
+			dataTable = $('#tblData').DataTable({
+				"ajax": { url: '/admin/company/getall' },
+				"columns": [
+					{ "data": "name", "width": "15%" },
+					{ "data": "phoneNumber", "width": "15%" },
+					{ "data": "postalCode", "width": "15%" },
+					{ "data": "state", "width": "15%" },
+					{ "data": "city", "width": "15%" },
+					{ "data": "streetAddress", "width": "15%" },
+					{
+						data: 'id',
+						"render": function (data) {
+							return `<div class="w-75 btn-group" role="group">
+									<a href="/admin/company/upsert?id=${data}" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
+									<a onClick=Delete('/admin/company/delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i>Delete</a>
+									</div>`
+						},
+						"width": "15%"
+					}
+				]
+			});
+		}
+
+		function Delete(url) {
+			Swal.fire({
+				title: '削除確定しますか？',
+				text: "削除しましたら、元に戻すことができません！",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'はい',
+				cancelButtonText: 'いいえ'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$.ajax({
+						url: url,
+						type: 'DELETE',
+						success: function (data) {
+							dataTable.ajax.reload();
+							toastr.success(data.message);
+						}
+					})
+				}
+			})
+		}
+	</script>
+}

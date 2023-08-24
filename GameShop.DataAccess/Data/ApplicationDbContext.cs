@@ -12,9 +12,10 @@ namespace GameShop.DataAccess.Data
 		}
 		public DbSet<Platform> Platforms { get; set; }
 		public DbSet<Product> Products { get; set; }
-		public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
@@ -22,6 +23,38 @@ namespace GameShop.DataAccess.Data
 				new Platform { Id = 1, Name = "PS5", DisplayOrder = 1 },
 				new Platform { Id = 2, Name = "PS4", DisplayOrder = 2 },
 				new Platform { Id = 3, Name = "Switch", DisplayOrder = 3 }
+				);
+
+			modelBuilder.Entity<Company>().HasData(
+				new Company { 
+					Id = 1, 
+					Name = "testCompany",
+					PhoneNumber = "222-1233-1233",
+					PostalCode = "123-1234",
+					State = "Tokyo",
+					City = "Nerima",
+					StreetAddress = "1-1-1"
+				},
+				new Company
+				{
+					Id = 2,
+					Name = "testCompany02",
+					PhoneNumber = "234343",
+					PostalCode = "75674",
+					State = "Osaka",
+					City = "Nerima",
+					StreetAddress = "4-2-4"
+				},
+				new Company
+				{
+					Id = 3,
+					Name = "testCompany03",
+					PhoneNumber = "222-2453-1233",
+					PostalCode = "123-2345",
+					State = "Tokyo",
+					City = "Nerima",
+					StreetAddress = "1-1-1"
+				}
 				);
 
 			modelBuilder.Entity<Product>().HasData(

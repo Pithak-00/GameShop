@@ -4,6 +4,7 @@ using GameShop.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameShop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230824064548_addCompanyTable")]
+    partial class addCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,38 +55,6 @@ namespace GameShop.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Nerima",
-                            Name = "testCompany",
-                            PhoneNumber = "222-1233-1233",
-                            PostalCode = "123-1234",
-                            State = "Tokyo",
-                            StreetAddress = "1-1-1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Nerima",
-                            Name = "testCompany02",
-                            PhoneNumber = "234343",
-                            PostalCode = "75674",
-                            State = "Osaka",
-                            StreetAddress = "4-2-4"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Nerima",
-                            Name = "testCompany03",
-                            PhoneNumber = "222-2453-1233",
-                            PostalCode = "123-2345",
-                            State = "Tokyo",
-                            StreetAddress = "1-1-1"
-                        });
                 });
 
             modelBuilder.Entity("GameShop.Models.Platform", b =>
