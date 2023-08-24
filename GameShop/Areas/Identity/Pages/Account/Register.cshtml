@@ -65,6 +65,11 @@
                             <option disabled selected>-ロール選択-</option>
                         </select>
                     </div>
+                    <div class="form-floating mb-3 col-md-6">
+                        <select asp-for="Input.CompanyID" asp-items="@Model.Input.CompanyList" class="form-select">
+                            <option disabled selected>-企業選択-</option>
+                        </select>
+                    </div>
                     <div class="col-12">
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">登録</button>
                     </div>
