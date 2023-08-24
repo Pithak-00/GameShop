@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameShop.Models
 {
-	public class ApplicationUsers:IdentityUser
+	public class ApplicationUser:IdentityUser
 	{
 		[Required]
 		public string Name { get; set; }

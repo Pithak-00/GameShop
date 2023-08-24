@@ -224,11 +224,11 @@ namespace GameShopWeb.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private ApplicationUsers CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<ApplicationUsers>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
