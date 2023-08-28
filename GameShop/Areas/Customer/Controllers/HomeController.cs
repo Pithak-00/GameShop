@@ -55,8 +55,8 @@ namespace GameShopWeb.Areas.Customer.Controllers
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
+            TempData["success"] = "カート更新成功";
 
-            _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
