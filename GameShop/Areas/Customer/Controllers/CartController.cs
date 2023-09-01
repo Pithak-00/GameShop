@@ -138,7 +138,7 @@ namespace GameShopWeb.Areas.Customer.Controllers
                     {
                         PriceData = new SessionLineItemPriceDataOptions
                         {
-                            UnitAmount = (long)(item.Price * 100),
+                            UnitAmount = (long)item.Price,
                             Currency = "jpy",
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {

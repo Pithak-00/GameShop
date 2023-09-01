@@ -13,16 +13,16 @@ namespace GameShop.Utility
 		public const string Role_Admin = "管理者";
 		public const string Role_Employee = "従業員";
 
-		public const string StatusPending = "Pending";
-		public const string StatusApproved = "Approved";
-		public const string StatusInProcess = "Processing";
-		public const string StatusShipped = "Shipped";
-		public const string StatusCancelled = "Cancelled";
-		public const string StatusRefunded = "Refunded";
+		public const string StatusPending = "保留中";
+		public const string StatusApproved = "承認";
+		public const string StatusInProcess = "手続中";
+		public const string StatusShipped = "発送済";
+		public const string StatusCancelled = "キャンセル";
+		public const string StatusRefunded = "返金";
 
-		public const string PaymentStatusPending = "Pending";
-		public const string PaymentStatusApproved = "Approved";
-		public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
-		public const string PaymentStatusRejected = "Rejected";
+		public const string PaymentStatusPending = "保留中";
+		public const string PaymentStatusApproved = "承認";
+		public const string PaymentStatusDelayedPayment = "支払い遅延が承認";
+		public const string PaymentStatusRejected = "拒否";
 	}
 }

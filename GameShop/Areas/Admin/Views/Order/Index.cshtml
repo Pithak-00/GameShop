@@ -39,19 +39,19 @@
 			<span></span>
 			<ul class="list-group list-group-horizontal-sm">
 				<a style="text-decoration:none; asp-controller="Order" asp-action="Index" asp-route-status="inprocess">
-					<li class="list-group-item @inprocess">In Process</li>
+					<li class="list-group-item @inprocess"><div class="text-white">手続中</div></li>
 				</a>
 				<a style="text-decoration:none; asp-controller="Order" asp-action="Index" asp-route-status="pending">
-				<li class="list-group-item @pending">Payment Pending</li>
+					<li class="list-group-item @pending"><div class="text-white">支払い保留中</div></li>
 				</a>
 				<a style="text-decoration:none; asp-controller="Order" asp-action="Index" asp-route-status="completed">
-				<li class="list-group-item @completed">Completed</li>
+					<li class="list-group-item @completed"><div class="text-white">完了</div></li>
 				</a>
 				<a style="text-decoration:none; asp-controller="Order" asp-action="Index" asp-route-status="approved">
-				<li class="list-group-item @approved">Approved</li>
+					<li class="list-group-item @approved"><div class="text-white">承認</div></li>
 				</a>
 				<a style="text-decoration:none; asp-controller="Order" asp-action="Index" asp-route-status="all">
-				<li class="list-group-item @all">All</li>
+					<li class="list-group-item @all"><div class="text-white">すべて</div></li>
 				</a>
 			</ul>
 		</div>
