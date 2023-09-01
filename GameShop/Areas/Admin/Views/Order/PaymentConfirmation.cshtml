@@ -1,0 +1,17 @@
+﻿@model int
+
+<div class="container row pt-4">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center text-white">支払い成功!</h1>
+        注文番号は : @Model <br /><br />
+
+    </div>
+    <div class="col-12 text-center" style="color:maroon">
+        <br />
+        支払い申請が完了しました! <br />
+        <a asp-area="Admin"
+        asp-controller="Order"
+        asp-action="Details"
+        asp-route-orderId="@Model" class="btn btn-primary">注文詳細に戻る</a>
+    </div>
+</div>
